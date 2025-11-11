@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <!-- Classic dog nose shape - rounded inverted triangle -->
+    <path d="M 64 30
+             L 30 60
+             Q 30 85 45 95
+             Q 54 100 64 100
+             Q 74 100 83 95
+             Q 98 85 98 60
+             Z"
+          class="nose"/>
+
+    <!-- Left nostril - comma/bean shape -->
+    <path d="M 48 55
+             Q 42 58 42 65
+             Q 42 70 46 72
+             Q 50 73 54 70
+             Q 56 66 54 62
+             Q 52 58 48 55 Z"
+          class="nostril"/>
+
+    <!-- Right nostril - comma/bean shape -->
+    <path d="M 80 55
+             Q 86 58 86 65
+             Q 86 70 82 72
+             Q 78 73 74 70
+             Q 72 66 74 62
+             Q 76 58 80 55 Z"
+          class="nostril"/>
+
+    <!-- Bottom divider line (philtrum) -->
+    <path d="M 64 75 Q 64 90 64 95" class="divider"/>
+
+    <style>
+        .nose {
+            fill: #1a1a1a;
+        }
+        .nostril {
+            fill: #000000;
+        }
+        .divider {
+            stroke: #000000;
+            stroke-width: 4;
+            stroke-linecap: round;
+            fill: none;
+        }
+        @media (prefers-color-scheme: dark) {
+            .nose { fill: #d4d4d4; }
+            .nostril { fill: #1a1a1a; }
+            .divider { stroke: #1a1a1a; }
+        }
+    </style>
+</svg>

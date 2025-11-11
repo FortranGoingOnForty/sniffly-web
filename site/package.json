@@ -1,0 +1,16 @@
+{
+  "name": "sniffly-site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && npm run copy-releases",
+    "copy-releases": "mkdir -p dist/releases && cp -r releases/* dist/releases/ 2>/dev/null || true",
+    "preview": "astro preview",
+    "add-release": "node scripts/add-release.js",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.15.4"
+  }
+}

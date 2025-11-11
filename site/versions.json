@@ -1,0 +1,28 @@
+{
+  "versions": [
+    {
+      "version": "0.2.0",
+      "date": "2025-11-10",
+      "filename": "sniffly-0.2.0.dmg",
+      "changelog": "initial release of sniffly"
+    },
+    {
+      "version": "0.2.4",
+      "date": "2025-11-10",
+      "filename": "sniffly-0.2.4.dmg",
+      "changelog": "fix packaging problems with initial release"
+    },
+    {
+      "version": "0.2.5",
+      "date": "2025-11-11",
+      "filename": "sniffly-0.2.5.dmg",
+      "changelog": "fix some rendering things: phantom boxes, stacks. fix thread cleanup. fix crash on early cose"
+    },
+    {
+      "version": "0.2.6",
+      "date": "2025-11-11",
+      "filename": "sniffly-0.2.6.dmg",
+      "changelog": "cancel scan for quicker navigation with dynamic ui"
+    }
+  ]
+}

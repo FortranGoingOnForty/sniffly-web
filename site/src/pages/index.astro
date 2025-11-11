@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="sniffly - Disk Space Analyzer for Unix">
+  <section>
+    <img src="/image/sniffly1.png" alt="Sniffly disk space analyzer interface" style="width: 100%; max-width: 600px; margin: 2rem auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+
+    <h2>about sniffly</h2>
+    <p>
+      sniffly is a disk space analyzer inspired by SpaceSniffer, designed
+      specifically for Unix-based systems, and written entirely in modern Fortran. Visualize your disk usage and quickly
+      identify what's taking up space on your machine.
+    </p>
+
+    <h2>features</h2>
+    <ul style="margin-left: 2rem; margin-top: 1rem;">
+      <li>visual treemap representation of disk usage</li>
+      <li>fast scanning engine</li>
+      <li>interactive navigation</li>
+      <li>toggle dotfiles/hiddens</li>
+      <li>quick open in finder</li>
+      <li>quick delete of offending files</li>
+      <li>native macOS application</li>
+    </ul>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/downloads" class="btn">Download Now</a>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; color: #666;">
+      <p>...or</p>
+      <p style="font-weight: 600; margin-top: 0.5rem;">install with homebrew</p>
+    </div>
+
+    <div class="terminal-wrapper">
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <button class="control-btn close" id="terminal-close" aria-label="Collapse terminal"></button>
+            <button class="control-btn minimize" aria-label="Minimize"></button>
+            <button class="control-btn maximize" aria-label="Maximize"></button>
+          </div>
+          <div class="terminal-title">Terminal</div>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <div class="terminal-line comment"># Tap the repository</div>
+          <div class="terminal-line command"><span class="prompt">$</span> brew tap FortranGoingOnForty/sniffly</div>
+          <div class="terminal-line comment"># Install sniffly</div>
+          <div class="terminal-line command"><span class="prompt">$</span> brew install --cask sniffly</div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .terminal-wrapper {
+        max-width: 600px;
+        margin: 2rem auto;
+      }
+
+      .terminal {
+        background: #1e1e1e;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        font-size: 14px;
+      }
+
+      .terminal-header {
+        background: #2d2d2d;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-bottom: 1px solid #3d3d3d;
+      }
+
+      .terminal-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .control-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        transition: filter 0.2s;
+      }
+
+      .control-btn:hover {
+        filter: brightness(1.2);
+      }
+
+      .control-btn.close {
+        background: #ff5f56;
+      }
+
+      .control-btn.minimize {
+        background: #ffbd2e;
+      }
+
+      .control-btn.maximize {
+        background: #27c93f;
+      }
+
+      .terminal-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #999;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .terminal-body {
+        padding: 16px;
+        color: #d4d4d4;
+        line-height: 1.8;
+        max-height: 300px;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .terminal-body.collapsed {
+        max-height: 0;
+        padding: 0 16px;
+      }
+
+      .terminal-line {
+        margin-bottom: 8px;
+      }
+
+      .terminal-line.comment {
+        color: #6a9955;
+      }
+
+      .terminal-line.command {
+        color: #d4d4d4;
+      }
+
+      .prompt {
+        color: #4ec9b0;
+        margin-right: 8px;
+      }
+    </style>
+
+    <script>
+      const closeBtn = document.getElementById('terminal-close');
+      const terminalBody = document.getElementById('terminal-body');
+
+      closeBtn?.addEventListener('click', () => {
+        terminalBody?.classList.toggle('collapsed');
+      });
+    </script>
+
+    <p style="text-align: center; margin-top: 3rem; color: #666; font-size: 0.9rem;">
+      freeware (donations are welcome)
+    </p>
+  </section>
+</BaseLayout>

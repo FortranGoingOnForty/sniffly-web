@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import versions from '../../versions.json';
+
+// Sort versions by semantic version, newest first
+const sortedVersions = [...versions.versions].sort((a, b) => {
+  const parseVersion = (v) => v.split('.').map(n => parseInt(n, 10));
+  const [aMajor, aMinor, aPatch = 0] = parseVersion(a.version);
+  const [bMajor, bMinor, bPatch = 0] = parseVersion(b.version);
+
+  if (bMajor !== aMajor) return bMajor - aMajor;
+  if (bMinor !== aMinor) return bMinor - aMinor;
+  return bPatch - aPatch;
+});
+---
+
+<BaseLayout title="Downloads - Sniffly">
+  <section>
+    <h2>Downloads</h2>
+    <p>Download the latest version of Sniffly for macOS.</p>
+
+    <div class="download-toggle">
+      <button class="toggle-btn active" data-target="installer">installer</button>
+      <button class="toggle-btn" data-target="homebrew">homebrew</button>
+    </div>
+    <hr class="partial-rule" />
+
+    <div id="installer-content" class="download-content">
+      {sortedVersions.length === 0 && (
+        <div style="text-align: center; padding: 3rem; color: #666;">
+          <p>No releases available yet. Check back soon!</p>
+        </div>
+      )}
+
+      {sortedVersions.map((version) => (
+        <div class="version-card">
+          <div class="version-header">
+            <span class="version-number">v{version.version}</span>
+            <span class="version-date">{new Date(version.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}</span>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <a href={`/releases/${version.filename}`} class="btn" download>
+              Download for macOS (.dmg)
+            </a>
+          </div>
+
+          {version.changelog && (
+            <details open={sortedVersions.indexOf(version) === 0}>
+              <summary style="cursor: pointer; font-weight: 600; margin-bottom: 0.5rem;">
+                Changelog
+              </summary>
+              <div class="changelog">{version.changelog}</div>
+            </details>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div id="homebrew-content" class="download-content" style="display: none;">
+      <div class="terminal-wrapper">
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-controls">
+              <button class="control-btn close" id="terminal-close-downloads" aria-label="Collapse terminal"></button>
+              <button class="control-btn minimize" aria-label="Minimize"></button>
+              <button class="control-btn maximize" aria-label="Maximize"></button>
+            </div>
+            <div class="terminal-title">Terminal</div>
+          </div>
+          <div class="terminal-body" id="terminal-body-downloads">
+            <div class="terminal-line comment"># Tap the repository</div>
+            <div class="terminal-line command"><span class="prompt">$</span> brew tap FortranGoingOnForty/sniffly</div>
+            <div class="terminal-line comment"># Install sniffly</div>
+            <div class="terminal-line command"><span class="prompt">$</span> brew install --cask sniffly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .download-toggle {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0 1rem;
+      }
+
+      .toggle-btn {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #999;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+        font-family: inherit;
+      }
+
+      .toggle-btn:hover {
+        color: #666;
+      }
+
+      .toggle-btn.active {
+        color: var(--accent);
+      }
+
+      .partial-rule {
+        width: 200px;
+        margin: 0 auto 2rem;
+        border: none;
+        border-top: 2px solid var(--border);
+      }
+
+      .download-content {
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .terminal-wrapper {
+        max-width: 600px;
+        margin: 2rem auto;
+      }
+
+      .terminal {
+        background: #1e1e1e;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        font-size: 14px;
+      }
+
+      .terminal-header {
+        background: #2d2d2d;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-bottom: 1px solid #3d3d3d;
+      }
+
+      .terminal-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .control-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        transition: filter 0.2s;
+      }
+
+      .control-btn:hover {
+        filter: brightness(1.2);
+      }
+
+      .control-btn.close {
+        background: #ff5f56;
+      }
+
+      .control-btn.minimize {
+        background: #ffbd2e;
+      }
+
+      .control-btn.maximize {
+        background: #27c93f;
+      }
+
+      .terminal-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #999;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .terminal-body {
+        padding: 16px;
+        color: #d4d4d4;
+        line-height: 1.8;
+        max-height: 300px;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .terminal-body.collapsed {
+        max-height: 0;
+        padding: 0 16px;
+      }
+
+      .terminal-line {
+        margin-bottom: 8px;
+      }
+
+      .terminal-line.comment {
+        color: #6a9955;
+      }
+
+      .terminal-line.command {
+        color: #d4d4d4;
+      }
+
+      .prompt {
+        color: #4ec9b0;
+        margin-right: 8px;
+      }
+    </style>
+
+    <script>
+      // Toggle between installer and homebrew
+      const toggleBtns = document.querySelectorAll('.toggle-btn');
+      const installerContent = document.getElementById('installer-content');
+      const homebrewContent = document.getElementById('homebrew-content');
+
+      toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.target;
+
+          // Update active state
+          toggleBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // Show/hide content
+          if (target === 'installer') {
+            installerContent.style.display = 'block';
+            homebrewContent.style.display = 'none';
+          } else {
+            installerContent.style.display = 'none';
+            homebrewContent.style.display = 'block';
+          }
+        });
+      });
+
+      // Terminal collapse functionality
+      const closeBtn = document.getElementById('terminal-close-downloads');
+      const terminalBody = document.getElementById('terminal-body-downloads');
+
+      closeBtn?.addEventListener('click', () => {
+        terminalBody?.classList.toggle('collapsed');
+      });
+    </script>
+  </section>
+</BaseLayout>
