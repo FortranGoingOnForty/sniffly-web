@@ -23,6 +23,36 @@
       "date": "2025-11-11",
       "filename": "sniffly-0.2.6.dmg",
       "changelog": "cancel scan for quicker navigation with dynamic ui"
+    },
+    {
+      "version": "0.3.0",
+      "date": "2025-11-11",
+      "filename": "sniffly-0.3.0.dmg",
+      "changelog": "colored cairo clicable breadcrumb. crazy. also bug fixes and QoL things (back/forward better)"
+    },
+    {
+      "version": "0.4.0",
+      "date": "2025-11-11",
+      "filename": "sniffly-0.4.0.dmg",
+      "changelog": "tabs! QoL and bug fixes"
+    },
+    {
+      "version": "0.4.1",
+      "date": "2025-11-11",
+      "filename": "sniffly-0.4.1.dmg",
+      "changelog": "just fix breadcrumb lookahead lookbehind"
+    },
+    {
+      "version": "0.4.2",
+      "date": "2025-11-13",
+      "filename": "sniffly-0.4.2.dmg",
+      "changelog": "fix bundling of libgtk-4-fortran"
+    },
+    {
+      "version": "0.4.3",
+      "date": "2025-11-13",
+      "filename": "sniffly-0.4.3.dmg",
+      "changelog": "fix tab label overrun, poor icon choice for open-to-scan, hover tooltip reporting incorrect item counts on scanned dirs"
     }
   ]
 }

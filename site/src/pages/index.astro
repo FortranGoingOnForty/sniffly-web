@@ -1,27 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "sniffly",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "macOS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free disk space analyzer for macOS. Visualize storage usage with an intuitive treemap interface, find large files quickly, and free up hard drive space efficiently.",
+  "softwareVersion": "0.2.5",
+  "downloadUrl": "https://sniffly.musicsian.com/downloads",
+  "screenshot": "https://sniffly.musicsian.com/image/sniffly1.png",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "ratingCount": "1"
+  }
+};
 ---
 
-<BaseLayout title="sniffly - Disk Space Analyzer for Unix">
+<BaseLayout
+  title="sniffly - Free Disk Space Analyzer for macOS | Find Large Files & Free Up Storage"
+  description="Free disk space analyzer for macOS. Visualize storage usage with treemap visualization, find large files instantly, and free up hard drive space. Self-contained app with fast scanning."
+  keywords="disk space analyzer, free up hard drive space, find large files, storage analyzer, disk usage, macOS storage, hard drive cleaner, free disk analyzer, treemap visualization"
+>
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
   <section>
-    <img src="/image/sniffly1.png" alt="Sniffly disk space analyzer interface" style="width: 100%; max-width: 600px; margin: 2rem auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+    <img src="/image/sniffly3.png" alt="sniffly disk space analyzer showing treemap visualization of hard drive storage usage" style="width: 100%; max-width: 600px; margin: 2rem auto; display: block; border-radius: 8px;" />
 
     <h2>about sniffly</h2>
     <p>
-      sniffly is a disk space analyzer inspired by SpaceSniffer, designed
-      specifically for Unix-based systems, and written entirely in modern Fortran. Visualize your disk usage and quickly
-      identify what's taking up space on your machine.
+      sniffly is a free disk space analyzer inspired by SpaceSniffer, designed
+      specifically for macOS and Unix-based systems. Visualize your hard drive usage with an intuitive treemap interface and quickly
+      identify large files taking up storage space on your machine. Written entirely in modern Fortran because I can and I don't care what you think.
     </p>
 
     <h2>features</h2>
     <ul style="margin-left: 2rem; margin-top: 1rem;">
-      <li>visual treemap representation of disk usage</li>
-      <li>fast scanning engine</li>
-      <li>interactive navigation</li>
-      <li>toggle dotfiles/hiddens</li>
-      <li>quick open in finder</li>
-      <li>quick delete of offending files</li>
-      <li>native macOS application</li>
+      <li>visual treemap representation of disk space usage</li>
+      <li>interactive breadcrumb- or button-based navigation</li>
+      <li>fast hard drive scanning engine</li>
+      <li>interactive navigation to find large files</li>
+      <li>toggle dotfiles/hidden files visibility</li>
+      <li>quick open in Finder for file management</li>
+      <li>quick delete to free up hard drive space</li>
+      <li>self-contained macOS application</li>
     </ul>
 
     <div style="text-align: center; margin-top: 3rem;">
